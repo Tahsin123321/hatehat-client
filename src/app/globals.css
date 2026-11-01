@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: false;
+  logs: false;
+}
+
+/* Light: paper-white with indigo ink and marigold */
+@plugin "daisyui/theme" {
+  name: "hatehat";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #fbfcfa;
+  --color-base-200: #eef3ee;
+  --color-base-300: #d9e2da;
+  --color-base-content: #17202e;
+  --color-primary: #23306b;
+  --color-primary-content: #ffffff;
+  --color-secondary: #f2a900;
+  --color-secondary-content: #2a1d00;
+  --color-accent: #2e7d55;
+  --color-accent-content: #ffffff;
+  --color-neutral: #151b3b;
+  --color-neutral-content: #eef0fa;
+  --color-info: #2f6fde;
+  --color-info-content: #ffffff;
+  --color-success: #2e7d55;
+  --color-success-content: #ffffff;
+  --color-warning: #f2a900;
+  --color-warning-content: #2a1d00;
+  --color-error: #c9372c;
+  --color-error-content: #ffffff;
+  --radius-selector: 9999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.625rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* Dark: night indigo */
+@plugin "daisyui/theme" {
+  name: "hatehat-night";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: #111736;
+  --color-base-200: #0b1029;
+  --color-base-300: #202853;
+  --color-base-content: #e8ebf7;
+  --color-primary: #f2b632;
+  --color-primary-content: #241a00;
+  --color-secondary: #9aa8ff;
+  --color-secondary-content: #0b1029;
+  --color-accent: #5cc48c;
+  --color-accent-content: #07241a;
+  --color-neutral: #060a1d;
+  --color-neutral-content: #e8ebf7;
+  --color-info: #6f9cff;
+  --color-info-content: #07142e;
+  --color-success: #5cc48c;
+  --color-success-content: #07241a;
+  --color-warning: #f2b632;
+  --color-warning-content: #241a00;
+  --color-error: #ff7a6b;
+  --color-error-content: #2b0905;
+  --radius-selector: 9999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.625rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --font-bangla: "Hind Siliguri", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-base-100);
+    color: var(--color-base-content);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* One heading style for every section */
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+    line-height: 1.1;
+    color: var(--color-base-content);
+  }
+  .section-lead {
+    max-width: 60ch;
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+  .page-shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 76rem;
+    padding-inline: 1.25rem;
+  }
+  .section-pad {
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  /* Kantha running-stitch: the signature device of the whole site */
+  .stitch {
+    border: 2px dashed color-mix(in oklab, var(--color-secondary) 75%, transparent);
+  }
+  .stitch-line {
+    height: 0;
+    border-top: 2px dashed color-mix(in oklab, var(--color-secondary) 70%, transparent);
+  }
+  .stitch-inset {
+    position: relative;
+  }
+  .stitch-inset::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1.5px dashed color-mix(in oklab, var(--color-secondary) 70%, transparent);
+    border-radius: calc(var(--radius-box) - 2px);
+    pointer-events: none;
+  }
+
+  .event-card {
+    background: var(--color-base-100);
+    border: 1px solid var(--color-base-300);
+    border-radius: var(--radius-box);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: border-color 0.15s ease;
+  }
+  .event-card:hover {
+    border-color: var(--color-secondary);
+  }
+
+  .field-error {
+    color: var(--color-error);
+    font-size: 0.8125rem;
+    margin-top: 0.25rem;
+  }
+}
+
+.skeleton {
+  background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
